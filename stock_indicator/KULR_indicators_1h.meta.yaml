@@ -1,0 +1,59 @@
+calculation_date: '2025-05-26 22:48:17'
+has_multitimeframe: false
+indicator_params:
+  ADX: {}
+  ATR:
+    length: 21
+  BBANDS:
+    length: 20
+    std: 2
+  CCI:
+    length: 20
+  DONCHIAN:
+    length: 20
+  EMA10:
+    length: 10
+  EMA100:
+    length: 100
+  EMA20:
+    length: 20
+  EMA30:
+    length: 30
+  HVOL:
+    length: 21
+  ICHIMOKU: {}
+  KC:
+    length: 20
+    mamode: ema
+    scalar: 2
+  MFI:
+    length: 21
+  OBV: {}
+  PSAR: {}
+  ROC:
+    length: 21
+  ROLLING_STD:
+    length: 20
+  RSI:
+    length: 21
+  SMA100:
+    length: 100
+  SMA30:
+    length: 30
+  STDDEV:
+    length: 20
+  STOCH:
+    d: 3
+    k: 14
+    smooth_k: 3
+  ULCER:
+    length: 14
+  VAR:
+    length: 20
+  VWAP: {}
+  WILLR:
+    length: 21
+interval: 1h
+pandas_ta_version: 0.3.14b0
+source_file: stock_data\KULR_ohlcv_1h_61fc7b5f681e437dd8cd5ac470c35c43.csv
+ticker: KULR

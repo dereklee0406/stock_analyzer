@@ -1,0 +1,7 @@
+ticker: TSLA
+interval: 1h
+generated_at: 2025-05-26T21:05:46.007950
+explain: See rationale column for signal logic. All indicator columns are included.
+min_confirmations: 1
+score_thresholds: {'strong_buy': 2.0, 'buy': 1.0, 'strong_sell': -2.0, 'sell': -1.0}
+thresholds: {'macd': 0, 'rsi_overbought': 70, 'rsi_oversold': 20, 'sma_cross': True, 'ema_cross': True, 'volume_spike': 2.0}

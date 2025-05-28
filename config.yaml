@@ -1,0 +1,274 @@
+# Stock Analyzer Tool Configuration
+# Data source and parameter management for data_collector.py
+
+# --- Data Collection Parameters (configurable) ---
+ohlcv_start: '2019-01-01'
+#ohlcv_end: '2025-05-15'  # Set to current date or desired end date
+ohlcv_intervals:
+  - '1d'
+  - '1h'
+
+vix_start: '2000-01-01'
+vix_end: '2025-05-15'  # Set to current date or desired end date
+
+cache_days: 1  # Number of days before cache is considered stale
+
+backtest_start: '2020-01-01'
+#backtest_end: '2025-05-15'  # Set to current date or desired end date
+
+# --- Signal Generation Logic (configurable) ---
+signal_logic:
+  trend_col: 'EMA100'
+  trend_min_period: 100
+  min_bull: 3
+  min_bear: 3
+  strong_bull: 5
+  strong_bear: 5
+  indicator_rules:
+    - col: 'MACD'
+      type: 'threshold'
+      bull: 0
+      bear: 0
+      desc_bull: 'MACD bullish'
+      desc_bear: 'MACD bearish'
+    - col: 'RSI'
+      type: 'range'
+      overbought: 70
+      oversold: 30
+      desc_overbought: 'RSI overbought'
+      desc_oversold: 'RSI oversold'
+    - col: 'BBU'
+      type: 'compare'
+      compare_col: 'close'
+      op: 'gt'
+      desc: 'Price above upper Bollinger Band (overbought)'
+      vote: 'bear'
+    - col: 'BBL'
+      type: 'compare'
+      compare_col: 'close'
+      op: 'lt'
+      desc: 'Price below lower Bollinger Band (oversold)'
+      vote: 'bull'
+    - col: 'BBM'
+      type: 'compare'
+      compare_col: 'close'
+      op: 'gt'
+      desc: 'Price above BBM (mid band)'
+      vote: 'bull'
+    - col: 'BBM'
+      type: 'compare'
+      compare_col: 'close'
+      op: 'lt'
+      desc: 'Price below BBM (mid band)'
+      vote: 'bear'
+    - col: 'STOCH'
+      type: 'range'
+      overbought: 80
+      oversold: 20
+      desc_overbought: 'STOCH overbought'
+      desc_oversold: 'STOCH oversold'
+    - col: 'K'
+      type: 'range'
+      overbought: 80
+      oversold: 20
+      desc_overbought: 'K overbought'
+      desc_oversold: 'K oversold'
+    - col: 'D'
+      type: 'range'
+      overbought: 80
+      oversold: 20
+      desc_overbought: 'D overbought'
+      desc_oversold: 'D oversold'
+    - col: 'J'
+      type: 'range'
+      overbought: 100
+      oversold: 0
+      desc_overbought: 'J overbought'
+      desc_oversold: 'J oversold'
+    - col: 'ATR'
+      type: 'threshold'
+      bull: 0
+      bear: 0
+      desc_bull: 'ATR rising (volatility up)'
+      desc_bear: 'ATR falling (volatility down)'
+    - col: 'OBV'
+      type: 'trend'
+      desc_bull: 'OBV rising (bullish volume)'
+      desc_bear: 'OBV falling (bearish volume)'
+    - col: 'VWAP'
+      type: 'compare'
+      compare_col: 'close'
+      op: 'gt'
+      desc: 'Price above VWAP (bullish)'
+      vote: 'bull'
+    - col: 'VWAP'
+      type: 'compare'
+      compare_col: 'close'
+      op: 'lt'
+      desc: 'Price below VWAP (bearish)'
+      vote: 'bear'
+    - col: 'PSAR'
+      type: 'compare'
+      compare_col: 'close'
+      op: 'lt'
+      desc: 'Price below PSAR (bearish)'
+      vote: 'bear'
+    - col: 'PSAR'
+      type: 'compare'
+      compare_col: 'close'
+      op: 'gt'
+      desc: 'Price above PSAR (bullish)'
+      vote: 'bull'
+    - col: 'ADX'
+      type: 'threshold'
+      bull: 25
+      bear: 0
+      desc_bull: 'Strong trend (ADX > 25)'
+      desc_bear: 'Weak trend (ADX < 25)'
+    - col: 'CCI'
+      type: 'range'
+      overbought: 100
+      oversold: -100
+      desc_overbought: 'CCI overbought'
+      desc_oversold: 'CCI oversold'
+    - col: 'WILLR'
+      type: 'range'
+      overbought: -20
+      oversold: -80
+      desc_overbought: 'WILLR overbought'
+      desc_oversold: 'WILLR oversold'
+    - col: 'ROC'
+      type: 'range'
+      overbought: 5
+      oversold: -5
+      desc_overbought: 'ROC strong up'
+      desc_oversold: 'ROC strong down'
+    - col: 'MFI'
+      type: 'range'
+      overbought: 80
+      oversold: 20
+      desc_overbought: 'MFI overbought'
+      desc_oversold: 'MFI oversold'
+    - col: 'DMIp'
+      type: 'threshold'
+      bull: 20
+      bear: 0
+      desc_bull: 'DMIp strong'
+      desc_bear: 'DMIp weak'
+    - col: 'DMIm'
+      type: 'threshold'
+      bull: 0
+      bear: 20
+      desc_bull: 'DMIm weak'
+      desc_bear: 'DMIm strong'
+    - col: 'SMA30'
+      type: 'cross'
+      compare_col: 'EMA30'
+      desc_bull: 'SMA30 crossed above EMA30'
+      desc_bear: 'SMA30 crossed below EMA30'
+    - col: 'SMA100'
+      type: 'cross'
+      compare_col: 'EMA100'
+      desc_bull: 'SMA100 crossed above EMA100'
+      desc_bear: 'SMA100 crossed below EMA100'
+    - col: 'BBW'
+      type: 'range'
+      overbought: 0.08
+      oversold: 0.02
+      desc_overbought: 'BBW high volatility'
+      desc_oversold: 'BBW low volatility'
+    - col: 'CHV'
+      type: 'range'
+      overbought: 10
+      oversold: 2
+      desc_overbought: 'CHV high volatility'
+      desc_oversold: 'CHV low volatility'
+    - col: 'STDDEV'
+      type: 'range'
+      overbought: 2
+      oversold: 0.5
+      desc_overbought: 'STDDEV high volatility'
+      desc_oversold: 'STDDEV low volatility'
+    - col: 'ROLLING_STD'
+      type: 'range'
+      overbought: 2
+      oversold: 0.5
+      desc_overbought: 'ROLLING_STD high volatility'
+      desc_oversold: 'ROLLING_STD low volatility'
+    - col: 'KCLe'
+      type: 'compare'
+      compare_col: 'close'
+      op: 'gt'
+      desc: 'Price above Keltner Channel Lower (potential support)'
+      vote: 'bull'
+    - col: 'KCUe'
+      type: 'compare'
+      compare_col: 'close'
+      op: 'lt'
+      desc: 'Price below Keltner Channel Upper (potential resistance)'
+      vote: 'bear'
+    - col: 'KCB'
+      type: 'compare'
+      compare_col: 'close'
+      op: 'gt'
+      desc: 'Price above Keltner Channel Basis'
+      vote: 'bull'
+    - col: 'DCL'
+      type: 'compare'
+      compare_col: 'close'
+      op: 'gt'
+      desc: 'Price above Donchian Channel Lower (breakout)'
+      vote: 'bull'
+    - col: 'DCU'
+      type: 'compare'
+      compare_col: 'close'
+      op: 'lt'
+      desc: 'Price below Donchian Channel Upper (breakdown)'
+      vote: 'bear'
+    - col: 'ULCER'
+      type: 'threshold'
+      bull: 5
+      bear: 10
+      desc_bull: 'Low drawdown (ULCER < 5)'
+      desc_bear: 'High drawdown (ULCER > 10)'
+    - col: 'HVOL'
+      type: 'threshold'
+      bull: 20
+      bear: 40
+      desc_bull: 'Low volatility (HVOL < 20)'
+      desc_bear: 'High volatility (HVOL > 40)'
+    - col: 'HVOL'
+      type: 'range'
+      overbought: 40   # Too volatile, avoid
+      oversold: 10     # Too quiet, avoid
+      desc_overbought: 'HVOL too high, avoid trade'
+      desc_oversold: 'HVOL too low, avoid trade'  
+
+# --- Indicator Output Logic (configurable) ---
+indicator_params:
+  SMA30: {length: 30}
+  SMA100: {length: 100}
+  EMA10: {length: 10}
+  EMA20: {length: 20}
+  EMA30: {length: 30}
+  EMA100: {length: 100}
+  RSI: {length: 21}
+  ATR: {length: 21}
+  CCI: {length: 20}
+  WILLR: {length: 21}
+  ROC: {length: 21}
+  MFI: {length: 21}
+  BBANDS: {length: 20, std: 2}
+  STOCH: {k: 14, d: 3, smooth_k: 3}
+  VWAP: {}
+  PSAR: {}
+  ICHIMOKU: {}
+  ADX: {}
+  OBV: {}
+  STDDEV: {length: 20}
+  ROLLING_STD: {length: 20}
+  KC: {length: 20, scalar: 2, mamode: 'ema'}
+  DONCHIAN: {length: 20}
+  ULCER: {length: 14}
+  HVOL: {length: 21}
+  VAR: {length: 20}

@@ -1,0 +1,107 @@
+# Stock Analyzer Tool – Enhanced Functional Requirements
+
+The Python Stock Analyzer Tool is a modular Python application for technical stock analysis, signal generation, and investment recommendations. Below are the enhanced requirements:
+
+## 1. Data Collection
+- Configurable via YAML files for flexible data source and parameter management.
+- Download historical OHLCV stock data (with splits/dividends) from Yahoo Finance using yfinance, with robust error handling and full precision float formatting.
+- Fetch VIX data and macroeconomic data (stub, extendable to FRED or other APIs).
+- Support multiple timeframes (1d, 1h) and configurable date ranges, with correct handling of yfinance's 1h interval limitations (max 2 years).
+- Implement robust caching to minimize API calls, support incremental updates, and handle rate limits and connection errors gracefully. Cached data is versioned by hash of parameters and stored in `stock_data`.
+- Store all data as structured CSV files in `stock_data`, with metadata and versioning for traceability. Metadata includes ticker, interval, date range, and fetch timestamp.
+- Add splits and dividends columns if present in the source data.
+- Remove any rows with all-NaN OHLCV values and ensure all price/volume columns are numeric.
+- Clean the data directory before collecting new data to avoid stale files.
+- Print/log progress and errors for transparency and debugging.
+
+## 2. Technical Indicators
+- Configurable via YAML files for indicator selection, parameter tuning, and output column order.
+- Calculates a comprehensive set of technical indicators, including but not limited to:
+  1. Simple Moving Average (SMA, e.g., SMA30, SMA100, SMA50, SMA200)
+  2. Exponential Moving Average (EMA, e.g., EMA10, EMA20, EMA30, EMA100, EMA5, EMA50, EMA200)
+  3. Moving Average Convergence Divergence (MACD)
+  4. Relative Strength Index (RSI)
+  5. Bollinger Bands (BBL, BBM, BBU, BBB, BBP)
+  6. Average True Range (ATR)
+  7. On-Balance Volume (OBV)
+  8. Stochastic Oscillator (STOCH) and KDJ (K, D, J)
+  9. Volume Weighted Average Price (VWAP)
+  10. Parabolic SAR (PSAR)
+  11. Ichimoku Cloud, ADX/DMI, CCI, WILLR, ROC, MFI, STDDEV, Rolling STD, Keltner Channel, Donchian Channel, Ulcer Index, Historical Volatility, Variance
+- All indicator parameters and the list of important indicators are user-configurable via YAML or CLI.
+- Each indicator is calculated with robust error handling and logging; errors are logged and do not halt processing. All results are mapped to 8 decimal places for consistency.
+- Multi-timeframe and multi-asset calculations are supported, including merging daily indicators into intraday data with suffixes (e.g., _1d). For 1h data, daily indicators are merged for richer analysis.
+- Batch processing for large watchlists is supported with multi-threading.
+- Results are stored in `stock_indicator` as CSV, with enforced column order: date, OHLCV, then indicators (K, D, J always follow STOCH if present). Output is chunked for large datasets.
+- Metadata includes indicator parameters, calculation date, pandas_ta version, multi-timeframe status, and source file for reproducibility. Metadata is saved as YAML alongside CSV.
+- Caching is used to avoid redundant calculations and speed up repeated analysis.
+- Data cleaning: removes rows with missing important indicators to ensure data quality for downstream analysis and signal generation.
+- Support and resistance levels are detected using local extrema (scipy.signal.argrelextrema) and output as SR_High_# and SR_Low_# columns for visualization. These are plotted as horizontal lines in the static chart, with price values in the legend.
+- Chart pattern detection: Identifies double top/bottom, head and shoulders, triangle, flag/pennant, cup and handle patterns, output as `chart_pattern` column for visualization.
+- Candle pattern detection: Identifies doji, hammer, shooting star, engulfing, morning/evening star, piercing line, dark cloud cover, spinning top, etc., output as `candle_pattern` column for visualization.
+- Splits and dividends columns are exported if present in the source data.
+- All indicator results are exported to CSV for downstream analysis and visualization.
+
+## 3. Signal Generation
+- Fully configurable via YAML for all signal logic, including trend filter, indicator rules, consensus thresholds, and scoring.
+- Generates trading signals using a dynamic, config-driven voting system based on trend, momentum, MACD, price action, volume, support/resistance, chart/candle patterns, and any user-defined or ML-based rules.
+- Supports composite, multi-indicator, and AI/ML-based signals, with user-defined templates and logic in config.yaml.
+- Each indicator rule (threshold, range, compare, trend, cross) is defined in YAML, allowing easy customization and extension without code changes.
+- Trend filter (e.g., SMA200 or configurable) and all indicator parameters are configurable.
+- Confidence scores and signal strength are calculated based on the number of bullish/bearish votes and configurable thresholds. Continuous scoring and minimum confirmations are supported.
+- Multi-timeframe and multi-asset signal generation is supported, with batch and scheduled runs, and merging of daily and intraday signals.
+- Outputs buy/sell/hold/strong buy/strong sell recommendations with confidence, rationale_bullish (bullish contributing factors), rationale_bearish (bearish contributing factors), and expiration, exportable as CSV.
+- Stores signals in `stock_signals` with metadata, documentation, and versioning for reproducibility. Metadata includes thresholds, scoring, and logic used.
+- Implements robust caching for fast access and de-duplication/conflict resolution for overlapping signals. Cache duration is configurable.
+- Provides full explainability for each signal, documenting all contributing bullish and bearish factors in separate structured columns (rationale_bullish, rationale_bearish).
+- Supports alerting/notification for new or high-confidence signals.
+- Handles duplicate columns, missing data, and ensures all relevant indicator columns are included in the output.
+- Extensible to custom/ML signal hooks for advanced or AI-driven strategies.
+
+## 4. Trading Strategies
+- Provide ready-to-use templates (trend following, mean reversion, breakout, momentum) and support user-defined/custom strategies.
+- Fully customizable via YAML or CLI, including indicator parameters, entry/exit rules, position sizing, and risk management.
+- Include robust backtesting tools with performance metrics (drawdown, win rate, profit factor, Sharpe ratio, etc.).
+- Support parameter optimization, walk-forward analysis, and benchmarking against indices.
+- Enable multi-timeframe and multi-asset strategy execution, with live/paper trading and walk-forward validation.
+- Store strategies in `stock_strategy` (YAML) with metadata, versioning, and documentation.
+- Allow strategy scheduling, alerting, tagging, search, deactivation, and archiving with historical logs.
+- Provide a dashboard for strategy performance visualization (equity curve, drawdown, win rate, etc.).
+- Save equity curve for visualization
+
+## 5. Visualization
+- Generates both static (PNG) and interactive (Plotly HTML) charts for stocks, indicators, and signals.
+- Static charts use matplotlib and support multi-panel layouts for price, trend, bands, channels, momentum, volume, and volatility indicators.
+- Candlestick charts with overlays (SMA, EMA) and candle pattern markers are generated using mplfinance if available.
+- Chart pattern and candle pattern markers are visualized with distinct markers and colors for each pattern type.
+- Support/resistance (S/R) levels are visualized as horizontal lines with price labels, auto-detected from indicator files.
+- Signal charts display buy/sell/hold/strong buy/strong sell markers, with marker size reflecting confidence or score, and annotated with the most recent signal.
+- Interactive dashboards are generated with Plotly, supporting multi-panel views for price, bands/channels, momentum, and volume/volatility.
+- All charts are saved in `stock_visualization` with metadata and documentation for traceability.
+- Chart generation is automated for multiple stocks and watchlists, with batch processing support.
+- Advanced features: multi-timeframe overlays, signal markers, annotations, zoom/pan, S/R zones, and multi-panel indicator views.
+- Custom color schemes, indicator/signal toggling, and export of chart metadata are supported.
+- Handles missing data, duplicate columns, and ensures all relevant indicators/signals are visualized.
+
+## 6. Investment Suggestions
+- Generate investment recommendations with ratings (e.g., Strong Buy/Sell, Hold) and confidence scores.
+- Classify by time horizon (day, swing, long-term) and risk profile.
+- Integrate technical signals, news sentiment, earnings, sector correlation, and backtest results.
+- Deliver reports in various formats (HTML, PDF, Markdown, JSON) and as dashboards.
+- Provide trading plans (entry/exit, stop-loss, position sizing, risk management, checklists).
+- Support customizable report templates, summary/detailed views, and dashboard widgets.
+- Store reports in `stock_suggestion` with version control and historical comparison.
+
+## 7. Implementation & Architecture
+- Modular codebase: data_collector.py, technical_indicators.py, signal_generator.py, strategy_manager.py, visualizer.py, investment_advisor.py, main.py.
+- Command-line interface for single/batch analysis, custom parameters, and mode selection.
+- YAML configuration and interactive CLI wizard for user experience.
+- Efficient processing for 100+ stocks and 10+ years of data, with memory/caching optimization.
+- Automatic directory creation, robust error handling, input validation, and logging.
+- Unit/integration tests, backtesting framework, and performance benchmarks.
+- Comprehensive documentation: docstrings, README, examples, Jupyter tutorials.
+- Support for extensibility, plugin modules, and API integration.
+
+## 8. Dependencies
+- pandas, numpy, matplotlib, plotly, yfinance, pandas-ta, scipy, pytest, PyYAML, requests (see file for versions).
+- Support for additional libraries as needed for extensibility and future features.
