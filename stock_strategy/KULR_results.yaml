@@ -1,0 +1,32 @@
+end_date: '2025-06-07'
+final_equity: !!python/object/apply:numpy._core.multiarray.scalar
+- &id001 !!python/object/apply:numpy.dtype
+  args:
+  - f8
+  - false
+  - true
+  state: !!python/tuple
+  - 3
+  - <
+  - null
+  - null
+  - null
+  - -1
+  - -1
+  - 0
+- !!binary |
+  OzMz879cFUE=
+max_drawdown: !!python/object/apply:numpy._core.multiarray.scalar
+- *id001
+- !!binary |
+  nLeCXlVV1T8=
+sharpe_ratio: !!python/object/apply:numpy._core.multiarray.scalar
+- *id001
+- !!binary |
+  Af8W3jcHC0A=
+start_date: '2024-01-01'
+ticker: KULR
+total_return: !!python/object/apply:numpy._core.multiarray.scalar
+- *id001
+- !!binary |
+  agg57///A0A=

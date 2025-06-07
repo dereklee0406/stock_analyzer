@@ -1,0 +1,5 @@
+# Example default strategy config for StrategyManager
+name: default
+short_ma: 10
+long_ma: 50
+# You can add more parameters as needed for your strategy logic

@@ -122,6 +122,7 @@ class SignalGenerator:
         """
         Generate a trading signal for a given row using config-driven indicator logic.
         Supports dynamic indicator rules, custom/ML hooks, and richer explainability.
+        Implements: weighted voting, adaptive thresholds, signal smoothing, customizable output columns.
         """
         rationale_bullish = []
         rationale_bearish = []
@@ -130,6 +131,8 @@ class SignalGenerator:
         votes_bull = 0
         votes_bear = 0
         config = self.config.get('signal_logic', {})
+        # --- Weighted Voting ---
+        indicator_weights = self.config.get('indicator_weights', {})
         # --- Trend Filter (configurable SMA/EMA columns) ---
         trend_ok = True
         trend_col = self.config.get('trend_col', config.get('trend_col', 'SMA100'))
@@ -138,6 +141,16 @@ class SignalGenerator:
             sma_val = df[trend_col].iloc[max(0, idx-trend_min_period):idx].mean() if trend_col in df else np.nan
             if not pd.isna(sma_val) and 'close' in row:
                 trend_ok = row['close'] > sma_val
+        # --- Adaptive Thresholds Example (RSI) ---
+        adaptive_rsi = None
+        if 'RSI' in row and idx >= 14:
+            # Use rolling mean and std to adapt RSI thresholds
+            rsi_window = df['RSI'].iloc[max(0, idx-14):idx]
+            if not rsi_window.isnull().all():
+                adaptive_rsi = {
+                    'overbought': rsi_window.mean() + rsi_window.std(),
+                    'oversold': rsi_window.mean() - rsi_window.std()
+                }
         # --- Enhanced Dynamic Indicator Rules ---
         indicator_rules = self.config.get('indicator_rules', config.get('indicator_rules', [
             # MACD
@@ -253,88 +266,186 @@ class SignalGenerator:
             # Add more candle patterns as needed
         for rule in indicator_rules:
             col = rule.get('col')
+            weight = indicator_weights.get(col, 1)
             if col not in row or pd.isna(row[col]):
                 continue
+            # --- Adaptive RSI thresholds ---
+            if rule['col'] == 'RSI' and adaptive_rsi:
+                overbought = adaptive_rsi['overbought']
+                oversold = adaptive_rsi['oversold']
+            else:
+                overbought = rule.get('overbought', 100)
+                oversold = rule.get('oversold', 0)
             if rule['type'] == 'threshold':
                 if row[col] > rule.get('bull', 0):
                     rationale_bullish.append(rule.get('desc_bull', f'{col} bullish'))
-                    votes_bull += 1
+                    votes_bull += weight
                 elif row[col] < -rule.get('bear', 0):
                     rationale_bearish.append(rule.get('desc_bear', f'{col} bearish'))
-                    votes_bear += 1
+                    votes_bear += weight
             elif rule['type'] == 'range':
-                if row[col] > rule.get('overbought', 100):
+                if row[col] > overbought:
                     rationale_bearish.append(rule.get('desc_overbought', f'{col} overbought'))
-                    votes_bear += 1
-                elif row[col] < rule.get('oversold', 0):
+                    votes_bear += weight
+                elif row[col] < oversold:
                     rationale_bullish.append(rule.get('desc_oversold', f'{col} oversold'))
-                    votes_bull += 1
+                    votes_bull += weight
             elif rule['type'] == 'compare':
                 cmp_col = rule.get('compare_col')
                 if cmp_col in row and not pd.isna(row[cmp_col]):
                     if rule.get('op') == 'gt' and row[cmp_col] > row[col]:
                         if rule.get('vote') == 'bull':
                             rationale_bullish.append(rule.get('desc', f'{cmp_col} > {col}'))
-                            votes_bull += 1
+                            votes_bull += weight
                         else:
                             rationale_bearish.append(rule.get('desc', f'{cmp_col} > {col}'))
-                            votes_bear += 1
+                            votes_bear += weight
                     elif rule.get('op') == 'lt' and row[cmp_col] < row[col]:
                         if rule.get('vote') == 'bull':
                             rationale_bullish.append(rule.get('desc', f'{cmp_col} < {col}'))
-                            votes_bull += 1
+                            votes_bull += weight
                         else:
                             rationale_bearish.append(rule.get('desc', f'{cmp_col} < {col}'))
-                            votes_bear += 1
+                            votes_bear += weight
             elif rule['type'] == 'trend':
                 if idx > 0:
                     prev_val = df[col].iloc[idx-1] if col in df else np.nan
                     if not pd.isna(prev_val):
                         if row[col] > prev_val:
                             rationale_bullish.append(rule.get('desc_bull', f'{col} rising'))
-                            votes_bull += 1
+                            votes_bull += weight
                         elif row[col] < prev_val:
                             rationale_bearish.append(rule.get('desc_bear', f'{col} falling'))
-                            votes_bear += 1
+                            votes_bear += weight
             elif rule['type'] == 'cross':
                 cmp_col = rule.get('compare_col')
                 if cmp_col in row and not pd.isna(row[cmp_col]) and idx > 0:
                     prev = df.iloc[idx-1]
                     if row[col] > row[cmp_col] and prev[col] <= prev[cmp_col]:
                         rationale_bullish.append(rule.get('desc_bull', f'{col} crossed above {cmp_col}'))
-                        votes_bull += 1
+                        votes_bull += weight
                     elif row[col] < row[cmp_col] and prev[col] >= prev[cmp_col]:
                         rationale_bearish.append(rule.get('desc_bear', f'{col} crossed below {cmp_col}'))
-                        votes_bear += 1
-        # --- Custom/ML Signal Hook ---
-        ml_signal_func = self.config.get('ml_signal_func')
-        if ml_signal_func:
-            ml_result = ml_signal_func(row, df, idx)
-            if ml_result:
-                if ml_result.get('bullish'):
-                    rationale_bullish.append(f"ML: {ml_result.get('desc', '')}")
-                    votes_bull += 1
-                if ml_result.get('bearish'):
-                    rationale_bearish.append(f"ML: {ml_result.get('desc', '')}")
-                    votes_bear += 1
-        # --- Price Action & Support/Resistance (as before, can be config-driven) ---
-        # ...existing price action and S/R logic...
+                        votes_bear += weight
+        # --- Confirmations: count number of strong bullish/bearish indicators ---
+        confirmations = 0
+        for rule in indicator_rules:
+            col = rule.get('col')
+            if col not in row or pd.isna(row[col]):
+                continue
+            weight = indicator_weights.get(col, 1)
+            # For bullish confirmations
+            if rule['type'] == 'threshold' and row[col] > rule.get('bull', 0) and weight >= 1.0:
+                confirmations += 1
+            elif rule['type'] == 'range' and row[col] < rule.get('oversold', 0) and weight >= 1.0:
+                confirmations += 1
+            elif rule['type'] == 'compare' and rule.get('vote') == 'bull' and col in row and row.get(rule.get('compare_col'), None) is not None and row[rule.get('compare_col')] > row[col] and weight >= 1.0:
+                confirmations += 1
+        min_confirmations = self.config.get('signal_min_confirmations', 2)  # Increased from 1 to 2
+        # --- Signal Smoothing (Debouncing) ---
+        smoothing_window = self.config.get('signal_smoothing_window', 3)  # Increased from 1 to 3
+        if smoothing_window > 1 and idx >= smoothing_window:
+            # Use rolling window majority vote for last N signals
+            prev_signals = df.iloc[max(0, idx-smoothing_window):idx]
+            prev_votes_bull = 0
+            prev_votes_bear = 0
+            for j in range(len(prev_signals)):
+                # Re-run indicator rules for each previous row (lightweight, or cache if needed)
+                prev_row = prev_signals.iloc[j].to_dict()
+                for rule in indicator_rules:
+                    col = rule.get('col')
+                    weight = indicator_weights.get(col, 1)
+                    if col not in prev_row or pd.isna(prev_row[col]):
+                        continue
+                    if rule['type'] == 'threshold':
+                        if prev_row[col] > rule.get('bull', 0):
+                            prev_votes_bull += weight
+                        elif prev_row[col] < -rule.get('bear', 0):
+                            prev_votes_bear += weight
+                    elif rule['type'] == 'range':
+                        if rule['col'] == 'RSI' and adaptive_rsi:
+                            overbought = adaptive_rsi['overbought']
+                            oversold = adaptive_rsi['oversold']
+                        else:
+                            overbought = rule.get('overbought', 100)
+                            oversold = rule.get('oversold', 0)
+                        if prev_row[col] > overbought:
+                            prev_votes_bear += weight
+                        elif prev_row[col] < oversold:
+                            prev_votes_bull += weight
+            # Average with current votes
+            votes_bull = (votes_bull + prev_votes_bull) / 2
+            votes_bear = (votes_bear + prev_votes_bear) / 2
         # --- Consensus Voting Logic (configurable thresholds) ---
         min_bull = self.config.get('min_bull', config.get('min_bull', 3))
         min_bear = self.config.get('min_bear', config.get('min_bear', 3))
         strong_bull = self.config.get('strong_bull', config.get('strong_bull', 5))
         strong_bear = self.config.get('strong_bear', config.get('strong_bear', 5))
-        if votes_bull > votes_bear and votes_bull >= min_bull and trend_ok:
+        # --- Buy the Dip Logic: Only allow Buy if price is not near recent high and volume is sufficient ---
+        recent_window = self.config.get('buy_dip_window', 20)
+        price = row.get('close', None)
+        volume = row.get('volume', None)
+        allow_buy = True
+        min_buy_volume = self.config.get('min_buy_volume', 1e5)  # Example: 100,000 shares
+        if price is not None and idx >= recent_window:
+            recent_high = df['close'].iloc[max(0, idx-recent_window):idx].max()
+            # Require a deeper dip for buy (e.g., 7% below high)
+            dip_threshold = self.config.get('buy_dip_threshold', 0.93)  # 0.93 = 7% below high
+            if price > recent_high * dip_threshold:
+                allow_buy = False
+        if volume is not None and volume < min_buy_volume:
+            allow_buy = False
+
+        # --- Sell the High/High Volume Logic: Only allow Sell if price is near recent high or volume is high ---
+        recent_window = self.config.get('sell_high_window', 20)
+        allow_sell = True
+        if price is not None and idx >= recent_window:
+            recent_high = df['close'].iloc[max(0, idx-recent_window):idx].max()
+            # Require price to be very close to recent high for sell (e.g., within 2%)
+            sell_high_threshold = self.config.get('sell_high_threshold', 0.98)  # 0.98 = within 2% of high
+            if price < recent_high * sell_high_threshold:
+                allow_sell = False
+        # Allow sell if volume is much higher than recent average (potential distribution)
+        if volume is not None and idx >= recent_window:
+            recent_vol = df['volume'].iloc[max(0, idx-recent_window):idx]
+            avg_vol = recent_vol.mean() if not recent_vol.isnull().all() else None
+            high_vol_factor = self.config.get('sell_high_vol_factor', 2.0)  # 2x average volume
+            if avg_vol and volume > avg_vol * high_vol_factor:
+                allow_sell = True
+
+        # --- Consensus Voting Logic (configurable thresholds) ---
+        if votes_bull > votes_bear and votes_bull >= min_bull and trend_ok and allow_buy and confirmations >= min_confirmations:
             signal = 'Buy' if votes_bull < strong_bull else 'Strong Buy'
             confidence = min(0.7 + 0.1 * (votes_bull - min_bull), 0.98)
-        elif votes_bear > votes_bull and votes_bear >= min_bear and not trend_ok:
+        elif votes_bear > votes_bull and votes_bear >= min_bear and not trend_ok and allow_sell and confirmations >= min_confirmations:
             signal = 'Sell' if votes_bear < strong_bear else 'Strong Sell'
             confidence = min(0.7 + 0.1 * (votes_bear - min_bear), 0.98)
         else:
             signal = 'Hold'
             confidence = 0.5
         score = votes_bull - votes_bear
-        return signal, confidence, rationale_bullish, rationale_bearish, score
+        # --- Customizable Output Columns ---
+        output_cols = self.config.get('output_columns', None)
+        output_row = {
+            'signal': signal,
+            'confidence': confidence,
+            'rationale_bullish': '; '.join(rationale_bullish),
+            'rationale_bearish': '; '.join(rationale_bearish),
+            'score': score
+        }
+        if output_cols:
+            for col in output_cols:
+                if col in row:
+                    output_row[col] = row[col]
+        else:
+            output_row.update(row)
+        return (
+            output_row['signal'],
+            output_row['confidence'],
+            output_row['rationale_bullish'].split('; '),
+            output_row['rationale_bearish'].split('; '),
+            output_row['score']
+        )
 
     def _get_expiry(self, row, interval):
         # Expiry: 1 interval ahead (can be customized)

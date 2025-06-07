@@ -47,8 +47,12 @@ def main():
         DataCollector(config).run(args)
     elif args.mode == 'indicators':
         TechnicalIndicators(config).run(args)
+        SignalGenerator(config).run(args)
+        #StrategyManager(config).run(args)
+        Visualizer(config).run(args)
     elif args.mode == 'signals':
         SignalGenerator(config).run(args)
+        Visualizer(config).run(args)
     elif args.mode == 'strategy':
         StrategyManager(config).run(args)
     elif args.mode == 'visualize':

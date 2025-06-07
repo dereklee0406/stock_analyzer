@@ -1,9 +1,10 @@
-calculation_date: '2025-05-26 22:48:06'
+calculation_date: '2025-06-07 13:37:00'
 has_multitimeframe: false
 indicator_params:
-  ADX: {}
+  ADX:
+    length: 14
   ATR:
-    length: 21
+    length: 14
   BBANDS:
     length: 20
     std: 2
@@ -21,21 +22,26 @@ indicator_params:
     length: 30
   HVOL:
     length: 21
-  ICHIMOKU: {}
+  ICHIMOKU:
+    kijun: 26
+    senkou: 52
+    tenkan: 9
   KC:
     length: 20
     mamode: ema
     scalar: 2
   MFI:
-    length: 21
+    length: 14
   OBV: {}
-  PSAR: {}
+  PSAR:
+    max: 0.2
+    step: 0.02
   ROC:
-    length: 21
+    length: 12
   ROLLING_STD:
     length: 20
   RSI:
-    length: 21
+    length: 14
   SMA100:
     length: 100
   SMA30:
@@ -52,8 +58,8 @@ indicator_params:
     length: 20
   VWAP: {}
   WILLR:
-    length: 21
+    length: 14
 interval: 1d
 pandas_ta_version: 0.3.14b0
-source_file: stock_data\KULR_ohlcv_1d_4592b59e3127acd06baabd0f20d146ec.csv
+source_file: stock_data\KULR_ohlcv_1d_bce6dd5f2fd0f75bdaa81f5bdf324b18.csv
 ticker: KULR

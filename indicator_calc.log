@@ -313,3 +313,202 @@
 2025-05-26 22:48:06,905 INFO:Saved metadata to stock_indicator\KULR_indicators_1d.meta.yaml
 2025-05-26 22:48:17,128 INFO:Saved indicators to stock_indicator\KULR_indicators_1h.csv
 2025-05-26 22:48:17,134 INFO:Saved metadata to stock_indicator\KULR_indicators_1h.meta.yaml
+2025-05-28 21:17:43,219 INFO:[TechnicalIndicators] Calculating indicators...
+2025-05-28 21:17:43,277 INFO:Calculating indicators for KULR (1d)
+2025-05-28 21:17:43,278 INFO:Calculating indicators for KULR (1h)
+2025-05-28 21:17:43,295 INFO:Loaded OHLCV data for KULR (1d) from stock_data\KULR_ohlcv_1d_33e31ab95e64a162f2bd82683f2fa69f.csv
+2025-05-28 21:17:43,309 INFO:Loaded OHLCV data for KULR (1h) from stock_data\KULR_ohlcv_1h_041877022ef337fb63be5c88069cf6b7.csv
+2025-05-28 21:17:43,885 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-05-28 21:17:44,680 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-05-28 21:18:08,778 INFO:Saved indicators to stock_indicator\KULR_indicators_1d.csv
+2025-05-28 21:18:08,784 INFO:Saved metadata to stock_indicator\KULR_indicators_1d.meta.yaml
+2025-05-28 21:18:19,810 INFO:Saved indicators to stock_indicator\KULR_indicators_1h.csv
+2025-05-28 21:18:19,814 INFO:Saved metadata to stock_indicator\KULR_indicators_1h.meta.yaml
+2025-06-02 20:41:04,561 INFO:[TechnicalIndicators] Calculating indicators...
+2025-06-02 20:41:04,563 INFO:Calculating indicators for KULR (1d)
+2025-06-02 20:41:04,564 INFO:Calculating indicators for KULR (1h)
+2025-06-02 20:41:04,583 INFO:Loaded OHLCV data for KULR (1d) from stock_data\KULR_ohlcv_1d_4cf2dafe0dbd2feddce2a13d852eafcc.csv
+2025-06-02 20:41:04,593 INFO:Loaded OHLCV data for KULR (1h) from stock_data\KULR_ohlcv_1h_fd93ab818f716c9daecc3275f9552897.csv
+2025-06-02 20:41:06,820 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-02 20:41:07,409 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-02 20:43:37,475 INFO:Saved indicators to stock_indicator\KULR_indicators_1d.csv
+2025-06-02 20:43:37,479 INFO:Saved metadata to stock_indicator\KULR_indicators_1d.meta.yaml
+2025-06-02 20:43:48,267 INFO:Saved indicators to stock_indicator\KULR_indicators_1h.csv
+2025-06-02 20:43:48,272 INFO:Saved metadata to stock_indicator\KULR_indicators_1h.meta.yaml
+2025-06-02 21:37:52,311 INFO:[TechnicalIndicators] Calculating indicators...
+2025-06-02 21:37:52,312 INFO:Calculating indicators for KULR (1d)
+2025-06-02 21:37:52,312 INFO:Calculating indicators for KULR (1h)
+2025-06-02 21:37:52,333 INFO:Loaded OHLCV data for KULR (1d) from stock_data\KULR_ohlcv_1d_4cf2dafe0dbd2feddce2a13d852eafcc.csv
+2025-06-02 21:37:52,367 INFO:Loaded OHLCV data for KULR (1h) from stock_data\KULR_ohlcv_1h_fd93ab818f716c9daecc3275f9552897.csv
+2025-06-02 21:37:52,975 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-02 21:37:54,092 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-02 21:38:27,797 INFO:Saved indicators to stock_indicator\KULR_indicators_1d.csv
+2025-06-02 21:38:27,801 INFO:Saved metadata to stock_indicator\KULR_indicators_1d.meta.yaml
+2025-06-02 21:38:40,907 INFO:Saved indicators to stock_indicator\KULR_indicators_1h.csv
+2025-06-02 21:38:40,912 INFO:Saved metadata to stock_indicator\KULR_indicators_1h.meta.yaml
+2025-06-02 21:57:51,221 INFO:[TechnicalIndicators] Calculating indicators...
+2025-06-02 21:57:51,222 INFO:Calculating indicators for KULR (1d)
+2025-06-02 21:57:51,223 INFO:Calculating indicators for KULR (1h)
+2025-06-02 21:57:51,231 INFO:Loaded OHLCV data for KULR (1d) from stock_data\KULR_ohlcv_1d_4cf2dafe0dbd2feddce2a13d852eafcc.csv
+2025-06-02 21:57:51,248 INFO:Loaded OHLCV data for KULR (1h) from stock_data\KULR_ohlcv_1h_fd93ab818f716c9daecc3275f9552897.csv
+2025-06-02 21:57:51,807 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-02 21:57:52,568 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-02 21:58:00,705 INFO:Saved indicators to stock_indicator\KULR_indicators_1d.csv
+2025-06-02 21:58:00,711 INFO:Saved metadata to stock_indicator\KULR_indicators_1d.meta.yaml
+2025-06-02 21:58:10,990 INFO:Saved indicators to stock_indicator\KULR_indicators_1h.csv
+2025-06-02 21:58:10,995 INFO:Saved metadata to stock_indicator\KULR_indicators_1h.meta.yaml
+2025-06-02 21:59:37,016 INFO:[TechnicalIndicators] Calculating indicators...
+2025-06-02 21:59:37,016 INFO:Calculating indicators for TSLA (1d)
+2025-06-02 21:59:37,017 INFO:Calculating indicators for TSLA (1h)
+2025-06-02 21:59:37,033 INFO:Loaded OHLCV data for TSLA (1d) from stock_data\TSLA_ohlcv_1d_173538d0e122e86a856ed754e559e4e5.csv
+2025-06-02 21:59:37,464 INFO:Loaded OHLCV data for TSLA (1h) from stock_data\TSLA_ohlcv_1h_f2002e70b29369e014abf458cc3a6b56.csv
+2025-06-02 21:59:37,484 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-02 21:59:38,498 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-02 21:59:45,908 INFO:Saved indicators to stock_indicator\TSLA_indicators_1d.csv
+2025-06-02 21:59:45,913 INFO:Saved metadata to stock_indicator\TSLA_indicators_1d.meta.yaml
+2025-06-02 21:59:55,712 INFO:Saved indicators to stock_indicator\TSLA_indicators_1h.csv
+2025-06-02 21:59:55,717 INFO:Saved metadata to stock_indicator\TSLA_indicators_1h.meta.yaml
+2025-06-02 22:06:38,188 INFO:[TechnicalIndicators] Calculating indicators...
+2025-06-02 22:06:38,189 INFO:Calculating indicators for TSLA (1d)
+2025-06-02 22:06:38,189 INFO:Calculating indicators for TSLA (1h)
+2025-06-02 22:06:38,210 INFO:Loaded OHLCV data for TSLA (1d) from stock_data\TSLA_ohlcv_1d_173538d0e122e86a856ed754e559e4e5.csv
+2025-06-02 22:06:38,359 INFO:Loaded OHLCV data for TSLA (1h) from stock_data\TSLA_ohlcv_1h_f2002e70b29369e014abf458cc3a6b56.csv
+2025-06-02 22:06:38,891 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-02 22:06:39,841 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-02 22:06:49,520 INFO:Saved indicators to stock_indicator\TSLA_indicators_1d.csv
+2025-06-02 22:06:49,525 INFO:Saved metadata to stock_indicator\TSLA_indicators_1d.meta.yaml
+2025-06-02 22:06:59,846 INFO:Saved indicators to stock_indicator\TSLA_indicators_1h.csv
+2025-06-02 22:06:59,850 INFO:Saved metadata to stock_indicator\TSLA_indicators_1h.meta.yaml
+2025-06-02 22:24:13,732 INFO:[TechnicalIndicators] Calculating indicators...
+2025-06-02 22:24:13,733 INFO:Calculating indicators for QQQ (1d)
+2025-06-02 22:24:13,733 INFO:Calculating indicators for QQQ (1h)
+2025-06-02 22:24:13,766 INFO:Loaded OHLCV data for QQQ (1h) from stock_data\QQQ_ohlcv_1h_51ee9dc4c967a1263ef061698f776e04.csv
+2025-06-02 22:24:14,503 INFO:Loaded OHLCV data for QQQ (1d) from stock_data\QQQ_ohlcv_1d_5476c44a0e2c99611f9b59abc158c599.csv
+2025-06-02 22:24:14,746 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-02 22:24:15,128 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-02 22:24:24,724 INFO:Saved indicators to stock_indicator\QQQ_indicators_1d.csv
+2025-06-02 22:24:24,730 INFO:Saved metadata to stock_indicator\QQQ_indicators_1d.meta.yaml
+2025-06-02 22:24:35,244 INFO:Saved indicators to stock_indicator\QQQ_indicators_1h.csv
+2025-06-02 22:24:35,444 INFO:Saved metadata to stock_indicator\QQQ_indicators_1h.meta.yaml
+2025-06-02 22:27:44,486 INFO:[TechnicalIndicators] Calculating indicators...
+2025-06-02 22:27:44,486 INFO:Calculating indicators for QQQ (1d)
+2025-06-02 22:27:44,486 INFO:Calculating indicators for QQQ (1h)
+2025-06-02 22:27:44,527 INFO:Loaded OHLCV data for QQQ (1h) from stock_data\QQQ_ohlcv_1h_51ee9dc4c967a1263ef061698f776e04.csv
+2025-06-02 22:27:44,544 INFO:Loaded OHLCV data for QQQ (1d) from stock_data\QQQ_ohlcv_1d_5476c44a0e2c99611f9b59abc158c599.csv
+2025-06-02 22:27:45,107 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-02 22:27:46,019 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-02 22:27:53,929 INFO:Saved indicators to stock_indicator\QQQ_indicators_1d.csv
+2025-06-02 22:27:53,934 INFO:Saved metadata to stock_indicator\QQQ_indicators_1d.meta.yaml
+2025-06-02 22:28:04,518 INFO:Saved indicators to stock_indicator\QQQ_indicators_1h.csv
+2025-06-02 22:28:04,522 INFO:Saved metadata to stock_indicator\QQQ_indicators_1h.meta.yaml
+2025-06-02 22:31:56,136 INFO:[TechnicalIndicators] Calculating indicators...
+2025-06-02 22:31:56,137 INFO:Calculating indicators for QQQ (1d)
+2025-06-02 22:31:56,137 INFO:Calculating indicators for QQQ (1h)
+2025-06-02 22:31:56,166 INFO:Loaded OHLCV data for QQQ (1h) from stock_data\QQQ_ohlcv_1h_51ee9dc4c967a1263ef061698f776e04.csv
+2025-06-02 22:31:56,236 INFO:Loaded OHLCV data for QQQ (1d) from stock_data\QQQ_ohlcv_1d_5476c44a0e2c99611f9b59abc158c599.csv
+2025-06-02 22:31:57,018 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-02 22:31:57,540 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-02 22:32:06,775 INFO:Saved indicators to stock_indicator\QQQ_indicators_1d.csv
+2025-06-02 22:32:06,780 INFO:Saved metadata to stock_indicator\QQQ_indicators_1d.meta.yaml
+2025-06-02 22:32:19,795 INFO:Saved indicators to stock_indicator\QQQ_indicators_1h.csv
+2025-06-02 22:32:19,801 INFO:Saved metadata to stock_indicator\QQQ_indicators_1h.meta.yaml
+2025-06-03 20:52:32,561 INFO:[TechnicalIndicators] Calculating indicators...
+2025-06-03 20:52:32,562 INFO:Calculating indicators for KULR (1d)
+2025-06-03 20:52:32,562 WARNING:No OHLCV data for KULR (1d), skipping.
+2025-06-03 20:52:32,563 INFO:Calculating indicators for KULR (1h)
+2025-06-03 20:52:32,563 WARNING:No OHLCV data for KULR (1h), skipping.
+2025-06-03 21:15:20,024 INFO:[TechnicalIndicators] Calculating indicators...
+2025-06-03 21:15:20,025 INFO:Calculating indicators for KULR (1d)
+2025-06-03 21:15:20,025 INFO:Calculating indicators for KULR (1h)
+2025-06-03 21:15:20,043 INFO:Loaded OHLCV data for KULR (1d) from stock_data\KULR_ohlcv_1d_be52d6eeab99bb2f3ee2438d3ad2a62b.csv
+2025-06-03 21:15:20,057 INFO:Loaded OHLCV data for KULR (1h) from stock_data\KULR_ohlcv_1h_3a0ef10f47f507099630e04a85b942ab.csv
+2025-06-03 21:15:20,602 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-03 21:15:21,491 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-03 21:15:27,696 INFO:Saved indicators to stock_indicator\KULR_indicators_1d.csv
+2025-06-03 21:15:27,702 INFO:Saved metadata to stock_indicator\KULR_indicators_1d.meta.yaml
+2025-06-03 21:15:37,624 INFO:Saved indicators to stock_indicator\KULR_indicators_1h.csv
+2025-06-03 21:15:37,628 INFO:Saved metadata to stock_indicator\KULR_indicators_1h.meta.yaml
+2025-06-07 13:08:36,456 INFO:[TechnicalIndicators] Calculating indicators...
+2025-06-07 13:08:36,482 INFO:Calculating indicators for KULR (1d)
+2025-06-07 13:08:36,482 INFO:Calculating indicators for KULR (1h)
+2025-06-07 13:08:36,502 INFO:Loaded OHLCV data for KULR (1d) from stock_data\KULR_ohlcv_1d_bce6dd5f2fd0f75bdaa81f5bdf324b18.csv
+2025-06-07 13:08:36,545 INFO:Loaded OHLCV data for KULR (1h) from stock_data\KULR_ohlcv_1h_f5bded7cdb5b5323a363ec053d794493.csv
+2025-06-07 13:08:37,191 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-07 13:08:38,080 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-07 13:08:45,350 INFO:Saved indicators to stock_indicator\KULR_indicators_1d.csv
+2025-06-07 13:08:45,377 INFO:Saved metadata to stock_indicator\KULR_indicators_1d.meta.yaml
+2025-06-07 13:08:57,669 INFO:Saved indicators to stock_indicator\KULR_indicators_1h.csv
+2025-06-07 13:08:57,676 INFO:Saved metadata to stock_indicator\KULR_indicators_1h.meta.yaml
+2025-06-07 13:10:58,149 INFO:[TechnicalIndicators] Calculating indicators...
+2025-06-07 13:10:58,150 INFO:Calculating indicators for KULR (1d)
+2025-06-07 13:10:58,150 INFO:Calculating indicators for KULR (1h)
+2025-06-07 13:10:58,171 INFO:Loaded OHLCV data for KULR (1d) from stock_data\KULR_ohlcv_1d_bce6dd5f2fd0f75bdaa81f5bdf324b18.csv
+2025-06-07 13:10:58,223 INFO:Loaded OHLCV data for KULR (1h) from stock_data\KULR_ohlcv_1h_f5bded7cdb5b5323a363ec053d794493.csv
+2025-06-07 13:10:58,707 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-07 13:10:59,638 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-07 13:11:06,645 INFO:Saved indicators to stock_indicator\KULR_indicators_1d.csv
+2025-06-07 13:11:06,650 INFO:Saved metadata to stock_indicator\KULR_indicators_1d.meta.yaml
+2025-06-07 13:11:17,907 INFO:Saved indicators to stock_indicator\KULR_indicators_1h.csv
+2025-06-07 13:11:17,914 INFO:Saved metadata to stock_indicator\KULR_indicators_1h.meta.yaml
+2025-06-07 13:13:22,551 INFO:[TechnicalIndicators] Calculating indicators...
+2025-06-07 13:13:22,552 INFO:Calculating indicators for KULR (1d)
+2025-06-07 13:13:22,552 INFO:Calculating indicators for KULR (1h)
+2025-06-07 13:13:22,572 INFO:Loaded OHLCV data for KULR (1d) from stock_data\KULR_ohlcv_1d_bce6dd5f2fd0f75bdaa81f5bdf324b18.csv
+2025-06-07 13:13:22,618 INFO:Loaded OHLCV data for KULR (1h) from stock_data\KULR_ohlcv_1h_f5bded7cdb5b5323a363ec053d794493.csv
+2025-06-07 13:13:23,098 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-07 13:13:24,045 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-07 13:13:30,227 INFO:Saved indicators to stock_indicator\KULR_indicators_1d.csv
+2025-06-07 13:13:30,232 INFO:Saved metadata to stock_indicator\KULR_indicators_1d.meta.yaml
+2025-06-07 13:13:41,683 INFO:Saved indicators to stock_indicator\KULR_indicators_1h.csv
+2025-06-07 13:13:41,687 INFO:Saved metadata to stock_indicator\KULR_indicators_1h.meta.yaml
+2025-06-07 13:19:42,708 INFO:[TechnicalIndicators] Calculating indicators...
+2025-06-07 13:19:42,709 INFO:Calculating indicators for KULR (1d)
+2025-06-07 13:19:42,710 INFO:Calculating indicators for KULR (1h)
+2025-06-07 13:19:42,728 INFO:Loaded OHLCV data for KULR (1d) from stock_data\KULR_ohlcv_1d_bce6dd5f2fd0f75bdaa81f5bdf324b18.csv
+2025-06-07 13:19:42,776 INFO:Loaded OHLCV data for KULR (1h) from stock_data\KULR_ohlcv_1h_f5bded7cdb5b5323a363ec053d794493.csv
+2025-06-07 13:19:43,269 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-07 13:19:44,143 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-07 13:19:51,281 INFO:Saved indicators to stock_indicator\KULR_indicators_1d.csv
+2025-06-07 13:19:51,287 INFO:Saved metadata to stock_indicator\KULR_indicators_1d.meta.yaml
+2025-06-07 13:20:02,980 INFO:Saved indicators to stock_indicator\KULR_indicators_1h.csv
+2025-06-07 13:20:02,986 INFO:Saved metadata to stock_indicator\KULR_indicators_1h.meta.yaml
+2025-06-07 13:26:38,162 INFO:[TechnicalIndicators] Calculating indicators...
+2025-06-07 13:26:38,163 INFO:Calculating indicators for KULR (1d)
+2025-06-07 13:26:38,164 INFO:Calculating indicators for KULR (1h)
+2025-06-07 13:26:38,184 INFO:Loaded OHLCV data for KULR (1d) from stock_data\KULR_ohlcv_1d_bce6dd5f2fd0f75bdaa81f5bdf324b18.csv
+2025-06-07 13:26:38,229 INFO:Loaded OHLCV data for KULR (1h) from stock_data\KULR_ohlcv_1h_f5bded7cdb5b5323a363ec053d794493.csv
+2025-06-07 13:26:38,722 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-07 13:26:39,613 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-07 13:26:46,962 INFO:Saved indicators to stock_indicator\KULR_indicators_1d.csv
+2025-06-07 13:26:46,967 INFO:Saved metadata to stock_indicator\KULR_indicators_1d.meta.yaml
+2025-06-07 13:26:57,904 INFO:Saved indicators to stock_indicator\KULR_indicators_1h.csv
+2025-06-07 13:26:57,908 INFO:Saved metadata to stock_indicator\KULR_indicators_1h.meta.yaml
+2025-06-07 13:29:06,127 INFO:[TechnicalIndicators] Calculating indicators...
+2025-06-07 13:29:06,128 INFO:Calculating indicators for KULR (1d)
+2025-06-07 13:29:06,129 INFO:Calculating indicators for KULR (1h)
+2025-06-07 13:29:06,153 INFO:Loaded OHLCV data for KULR (1h) from stock_data\KULR_ohlcv_1d_bce6dd5f2fd0f75bdaa81f5bdf324b18.csv
+2025-06-07 13:29:06,159 INFO:Loaded OHLCV data for KULR (1d) from stock_data\KULR_ohlcv_1d_bce6dd5f2fd0f75bdaa81f5bdf324b18.csv
+2025-06-07 13:29:07,273 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-07 13:29:07,277 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-07 13:29:19,425 INFO:Saved indicators to stock_indicator\KULR_indicators_1h.csv
+2025-06-07 13:29:19,432 INFO:Saved metadata to stock_indicator\KULR_indicators_1h.meta.yaml
+2025-06-07 13:29:19,450 INFO:Saved indicators to stock_indicator\KULR_indicators_1d.csv
+2025-06-07 13:29:19,455 INFO:Saved metadata to stock_indicator\KULR_indicators_1d.meta.yaml
+2025-06-07 13:30:22,521 INFO:[TechnicalIndicators] Calculating indicators...
+2025-06-07 13:30:22,522 INFO:Calculating indicators for KULR (1d)
+2025-06-07 13:30:22,541 INFO:Loaded OHLCV data for KULR (1d) from stock_data\KULR_ohlcv_1d_bce6dd5f2fd0f75bdaa81f5bdf324b18.csv
+2025-06-07 13:30:22,951 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-07 13:30:28,399 INFO:Saved indicators to stock_indicator\KULR_indicators_1d.csv
+2025-06-07 13:30:28,404 INFO:Saved metadata to stock_indicator\KULR_indicators_1d.meta.yaml
+2025-06-07 13:30:59,023 INFO:[TechnicalIndicators] Calculating indicators...
+2025-06-07 13:30:59,024 INFO:Calculating indicators for KULR (1d)
+2025-06-07 13:30:59,049 INFO:Loaded OHLCV data for KULR (1d) from stock_data\KULR_ohlcv_1d_bce6dd5f2fd0f75bdaa81f5bdf324b18.csv
+2025-06-07 13:30:59,483 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-07 13:31:04,914 INFO:Saved indicators to stock_indicator\KULR_indicators_1d.csv
+2025-06-07 13:31:04,919 INFO:Saved metadata to stock_indicator\KULR_indicators_1d.meta.yaml
+2025-06-07 13:36:53,990 INFO:[TechnicalIndicators] Calculating indicators...
+2025-06-07 13:36:53,990 INFO:Calculating indicators for KULR (1d)
+2025-06-07 13:36:54,010 INFO:Loaded OHLCV data for KULR (1d) from stock_data\KULR_ohlcv_1d_bce6dd5f2fd0f75bdaa81f5bdf324b18.csv
+2025-06-07 13:36:54,436 ERROR:Error calculating Ichimoku: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-06-07 13:37:00,048 INFO:Saved indicators to stock_indicator\KULR_indicators_1d.csv
+2025-06-07 13:37:00,053 INFO:Saved metadata to stock_indicator\KULR_indicators_1d.meta.yaml

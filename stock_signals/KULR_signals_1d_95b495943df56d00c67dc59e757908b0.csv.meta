@@ -1,6 +1,6 @@
 ticker: KULR
 interval: 1d
-generated_at: 2025-05-26T22:06:30.560739
+generated_at: 2025-06-07T13:37:04.057845
 explain: See rationale column for signal logic. All indicator columns are included.
 min_confirmations: 1
 score_thresholds: {'strong_buy': 2.0, 'buy': 1.0, 'strong_sell': -2.0, 'sell': -1.0}
